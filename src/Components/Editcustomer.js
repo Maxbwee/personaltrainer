@@ -14,26 +14,27 @@ export default function Editcustomer(props) {
 
     const [customer, setCustomer] = React.useState({
        
-        firstname: '',
-        lastname: '',
-        streetaddress:'',
-        postcode: '',
-        city: '',
-        email: '',
-        phone:''
+        firstname: "",
+        lastname: "",
+        streetaddress: "",
+        postcode: "",
+        city: "",
+        email: "",
+        phone: "",
     
     });
 
     const handleClickOpen = () => {
-        setCustomer({
-            firstname: props.customer.data.firstname,
-            lastname: props.customer.data.lastname,
-            streetaddress: props.customer.data.streetaddress,
-            postcode: props.customer.data.postcode,
-            city: props.customer.data.city,
-            email: props.customer.data.email,
-            phone: props.customer.data.phone,
-        })  
+       console.log(props.customer) 
+       setCustomer({
+           firstname: props.customer.data.firstname,
+           lastname: props.customer.data.lastname,
+           streetaddress: props.customer.data.streetaddress,
+           postcode: props.customer.data.postcode,
+           city: props.customer.data.city,
+           email: props.customer.data.email,
+           phone: props.customer.data.phone,
+       })
         setOpen(true);
     };
 
@@ -60,7 +61,7 @@ export default function Editcustomer(props) {
                 <DialogContent>
                             <TextField
                             margin="dense"
-                             name="firstname"
+                            name="firstname"
                             value={customer.firstname}
                             onChange={inputChanged}
                             label="First Name"

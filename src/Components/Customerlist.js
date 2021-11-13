@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-import { AgGridReact} from 'ag-grid-react';
+import { AgGridReact, AgGridColumn} from 'ag-grid-react';
 import { Snackbar } from '@mui/material';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -11,25 +11,34 @@ import Addcustomer from './Addcustomer';
 import Editcustomer from './Editcustomer';
 
 
+
 export default function Customerlist() {
 
     const [customers, setCustomers] = useState([]);
     
+
+    const [gridApi, setGridApi] = useState();
+    const [gridColumnApi, setGridColumnApi] = useState();
+    const gridRef = useRef();
+
     const [open, setOpen] = React.useState(false);
     const[msg, setMsg] = useState('');
     
     
-    const gridRef = useRef();
+
 
     const handleClose = () => {
         setOpen(false);
       };
 
+    const gridIsReady = (params) => {
+        setGridApi(params.api) 
+        setGridColumnApi(params.columnApi)
+    }
+
+   
     useEffect(() => fetchCustomers(), [])
     
-    const editingBegins = () => {
-        setCustomers(gridRef.current.getSelectedNodes()[0].data)
-    }
 
     const fetchCustomers = () => {
         console.log(customers)
@@ -69,20 +78,24 @@ export default function Customerlist() {
         .catch(err => console.error(err))
     }
 
-    const editCustomer = (url, updateCustomer) => {
+    const editCustomer = (url, customer) => {
         fetch(url, {
             method: 'PUT',
             headers: {'Content-type':'application/json'},
-            body: JSON.stringify(updateCustomer)
+            body: JSON.stringify(customer)
         })
-        .then(() => fetchCustomers())
         .then(_ => { 
             setMsg("Customer updated");
             setOpen(true);
-            })
-       .catch(err => console.error(err))
+            fetchCustomers();
+             })
+        .catch(err => console.error(err))
     }
-
+        
+        
+    
+    
+ 
     
     const columns = [
         {field: 'firstname', sortable: true, filter: true},
@@ -96,9 +109,10 @@ export default function Customerlist() {
             headerName: '',
             sortalbe:false,
             filter: false,
-            width: 120,
+            width: 100,
             field: 'links.self.href',
-            cellRendererFramework: params => <Editcustomer editCustomer={editCustomer} customer={params}/>
+            cellRendererFramework: params => <Editcustomer editCustomer={editCustomer} customer={params} />
+           
         },
         {
             headerName: '',
@@ -124,8 +138,7 @@ export default function Customerlist() {
                 paginationPageSize={10}
                 suppressCellSelection={true}
                 rowSelection="single"
-                onCellEditingStarted={editingBegins}
-                onCellEditingStopped={editCustomer}>
+                >
                 </AgGridReact>
       </div>
       <Snackbar
