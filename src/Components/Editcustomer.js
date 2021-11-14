@@ -14,13 +14,13 @@ export default function Editcustomer(props) {
 
     const [customer, setCustomer] = React.useState({
        
-        firstname: "",
-        lastname: "",
-        streetaddress: "",
-        postcode: "",
-        city: "",
-        email: "",
-        phone: "",
+        firstname: '',
+        lastname: '',
+        streetaddress: '',
+        postcode: '',
+        city: '',
+        email: '',
+        phone: '',
     
     });
 
