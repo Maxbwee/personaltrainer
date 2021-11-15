@@ -2,14 +2,17 @@ import React, {useState, useEffect, useRef} from 'react';
 
 import { AgGridReact, AgGridColumn} from 'ag-grid-react';
 import { Snackbar } from '@mui/material';
+import { render } from 'react-dom';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Button from '@mui/material/Button';
+import SaveIcon from '@mui/icons-material/Save';
 
 import Addcustomer from './Addcustomer';
 import Editcustomer from './Editcustomer';
 import Addtraining from './Addtraining';
+
 
 
 export default function Customerlist() {
@@ -25,8 +28,6 @@ export default function Customerlist() {
     const[msg, setMsg] = useState('');
     
     
-
-
     const handleClose = () => {
         setOpen(false);
       };
@@ -35,6 +36,14 @@ export default function Customerlist() {
         setGridApi(params.api) 
         setGridColumnApi(params.columnApi)
     }
+
+    const onBtnExport = () => {
+        gridApi.exportDataAsCsv();
+      };
+
+      const onBtnUpdate = () => {
+        document.querySelector('#csvResult').value = gridApi.getDataAsCsv();
+      };
 
    
     useEffect(() => fetchCustomers(), [])
@@ -149,6 +158,11 @@ export default function Customerlist() {
     return(
         <div>
             <Addcustomer addCustomer={addCustomer}/>
+            <div style={{marginLeft:1620}}>
+                <Button variant="outlined" endIcon={<SaveIcon/>} onClick={() => onBtnExport()}>
+            Download customers as CSV
+          </Button>
+          </div>
         <div className="ag-theme-material" style={{marginTop: 20, height: 600, width: '95%', margin: 'auto'}}>
             <AgGridReact 
                 rowData={customers}
@@ -156,6 +170,7 @@ export default function Customerlist() {
                 pagination={true}
                 paginationPageSize={10}
                 suppressCellSelection={true}
+                onGridReady={gridIsReady}
                 rowSelection="single"
                 >
                 </AgGridReact>
