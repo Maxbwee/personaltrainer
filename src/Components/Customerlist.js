@@ -129,7 +129,7 @@ export default function Customerlist() {
             sortalbe:false,
             filter: false,
             width: 80,
-            field: 'links.self.href',
+            field: 'links.0.href',
             cellRendererFramework: params => <Editcustomer editCustomer={editCustomer} customer={params} />
            
         },
