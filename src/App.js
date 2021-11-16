@@ -34,6 +34,7 @@ function App() {
             aria-label="secondary tabs example">
             <Tab label="Customers" value="one" />
             <Tab label="Training" value="two" />
+            <Tab label="Calendar" value="three" />
           </Tabs>
          
         </Toolbar>
@@ -41,6 +42,7 @@ function App() {
         </Box>
         {page === "one" && <Customerlist/>}
         {page === "two" && <TrainingList />}
+        {page === "three" && <Calendar/>}
     </div>
   );
 }
