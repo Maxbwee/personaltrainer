@@ -158,7 +158,7 @@ export default function Customerlist() {
     return(
         <div>
             <Addcustomer addCustomer={addCustomer}/>
-            <div style={{marginLeft:1620}}>
+            <div style={{marginTop: 20, marginLeft:'70%'}}>
                 <Button variant="outlined" endIcon={<SaveIcon/>} onClick={() => onBtnExport()}>
             Download customers as CSV
           </Button>

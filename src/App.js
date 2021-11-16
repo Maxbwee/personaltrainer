@@ -11,6 +11,7 @@ import Tab from '@mui/material/Tab';
 import Customerlist from './Components/Customerlist';
 import TrainingList from './Components/Traininglist';
 import Addcustomer from './Components/Addcustomer';
+import Calendar from './Components/Calendar';
 
 function App() {
 
