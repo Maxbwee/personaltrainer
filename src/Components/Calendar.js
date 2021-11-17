@@ -19,10 +19,12 @@ export default function Calendar() {
         .catch(err => console.error(err))
     }
 
-
+    
+    
     return(
         <div>
              <FullCalendar
+        
          plugins={[dayGridPlugin, timeGridPlugin]}
          headerToolbar={{
             left: 'prev,next today',
@@ -30,13 +32,14 @@ export default function Calendar() {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           }}
         initialView="dayGridMonth"
+        editable
         events={trainings}
         eventContent={(params) =>  (
            
             // Defines the parameters that show up in the calendar activity + firstname + lastname. Documentation https://fullcalendar.io/docs
-           <>
+           <div>
              <p>{params.event._def.extendedProps.activity} training with {params.event._def.extendedProps.customer.firstname} {params.event._def.extendedProps.customer.lastname}</p>
-            </>
+            </div>
           )}
       />
         </div>
