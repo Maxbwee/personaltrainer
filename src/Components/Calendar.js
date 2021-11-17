@@ -1,13 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import FullCalendar from '@fullcalendar/react'; 
-import timeGridPlugin from '@fullcalendar/timegrid'
-import dayGridPlugin from '@fullcalendar/daygrid'; 
-import dayjs from 'dayjs'
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid' 
+
 
 export default function Calendar() {
 
     const [trainings, setTrainings] = useState([]);
 
+
+    
+    useEffect(() => fetchTrainings(),[])
 
     const fetchTrainings = () => {
         fetch('https://customerrest.herokuapp.com/gettrainings')
@@ -27,10 +30,12 @@ export default function Calendar() {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           }}
         initialView="dayGridMonth"
-        
+        events={trainings}
         eventContent={(params) =>  (
-            <>
-             <p>{params.event.timeText}</p>
+           
+            // Defines the parameters that show up in the calendar activity + firstname + lastname. Documentation https://fullcalendar.io/docs
+           <>
+             <p>{params.event._def.extendedProps.activity} training with {params.event._def.extendedProps.customer.firstname} {params.event._def.extendedProps.customer.lastname}</p>
             </>
           )}
       />
