@@ -12,6 +12,7 @@ import Customerlist from './Components/Customerlist';
 import TrainingList from './Components/Traininglist';
 import Addcustomer from './Components/Addcustomer';
 import Calendar from './Components/Calendar';
+import UserStatistics from './Components/UserStatistics';
 
 function App() {
 
@@ -31,11 +32,11 @@ function App() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Personal Trainer App
             </Typography>
-          <Tabs value={page} onChange={handleChange} textColor="inherit" indicatorColor="secondary"
-            aria-label="secondary tabs example">
+          <Tabs value={page} onChange={handleChange} textColor="inherit" indicatorColor="secondary">
             <Tab label="Customers" value="one" />
             <Tab label="Training" value="two" />
             <Tab label="Calendar" value="three" />
+            <Tab label="Statistics" value="four" />
           </Tabs>
          
         </Toolbar>
@@ -44,6 +45,7 @@ function App() {
         {page === "one" && <Customerlist/>}
         {page === "two" && <TrainingList />}
         {page === "three" && <Calendar/>}
+        {page === "four" && <UserStatistics/>}
     </div>
   );
 }
