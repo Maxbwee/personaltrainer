@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import FullCalendar from '@fullcalendar/react'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid' 
-
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
 export default function Calendar() {
 
@@ -22,7 +23,7 @@ export default function Calendar() {
     
     
     return(
-        <div>
+      <div className="ag-theme-material" style={{marginTop: 20, height: 300, width: '95%', margin: 'auto'}}>
              <FullCalendar
         
          plugins={[dayGridPlugin, timeGridPlugin]}
@@ -36,7 +37,6 @@ export default function Calendar() {
         events={trainings}
         eventContent={(params) =>  (
            
-            // Defines the parameters that show up in the calendar activity + firstname + lastname. Documentation https://fullcalendar.io/docs
            <div>
              <p>{params.event._def.extendedProps.activity} training with {params.event._def.extendedProps.customer.firstname} {params.event._def.extendedProps.customer.lastname}</p>
             </div>
