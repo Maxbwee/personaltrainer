@@ -19,13 +19,23 @@ export default function Calendar() {
         .then(data => setTrainings(data))
         .catch(err => console.error(err))
     }
-
     
+    
+    function renderEventContent(params) {
+      return (
+        <>
+          <b>{params.timeText}</b>
+          <p>{params.event._def.extendedProps.activity} training with {params.event._def.extendedProps.customer.firstname} {params.event._def.extendedProps.customer.lastname}</p>
+        </>
+      )
+    }
+
     
     return(
       <div className="ag-theme-material" style={{marginTop: 20, height: 300, width: '95%', margin: 'auto'}}>
+            
              <FullCalendar
-        
+
          plugins={[dayGridPlugin, timeGridPlugin]}
          headerToolbar={{
             left: 'prev,next today',
@@ -35,13 +45,9 @@ export default function Calendar() {
         initialView="dayGridMonth"
         editable
         events={trainings}
-        eventContent={(params) =>  (
-           
-           <div>
-             <p>{params.event._def.extendedProps.activity} training with {params.event._def.extendedProps.customer.firstname} {params.event._def.extendedProps.customer.lastname}</p>
-            </div>
-          )}
+        eventContent={renderEventContent} // render function for customer details
       />
+         
         </div>
     )
 }

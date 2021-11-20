@@ -41,10 +41,6 @@ export default function Customerlist() {
         gridApi.exportDataAsCsv();
       };
 
-      const onBtnUpdate = () => {
-        document.querySelector('#csvResult').value = gridApi.getDataAsCsv();
-      };
-
    
     useEffect(() => fetchCustomers(), [])
     

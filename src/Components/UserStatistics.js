@@ -1,9 +1,9 @@
 import React, {useState, useEffect, PureComponent} from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Text } from 'recharts';
 import _ from "lodash";
-import { keyframes } from '@mui/styled-engine';
 
-export default function UserStatistics(props) {
+
+export default function UserStatistics() {
 
 
 
@@ -45,12 +45,12 @@ export default function UserStatistics(props) {
                     width={500}
                     height={500}
                     data={values}
-                    margin={{ top: 15, right: 20, left: 10, bottom: 5 }}
+                    margin={{ top: 20, right: 80, left: 20, bottom: 20 }}
                 >
                 <Tooltip />
                 <Legend />
-                <XAxis dataKey="trainingActivity" />
-                <YAxis/>
+                <XAxis dataKey="trainingActivity" label={{value: 'Training', position: 'insideBottomRight'}} />
+                <YAxis label={{value: 'Minutes', angle: -90, position: 'insideLeft'}}/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Bar barSize={80}  dataKey="total" fill="#3366ff" />
                 
