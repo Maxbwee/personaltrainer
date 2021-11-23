@@ -1,5 +1,5 @@
-import React, {useState, useEffect, PureComponent} from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Text } from 'recharts';
+import React, {useState, useEffect} from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 import _ from "lodash";
 
 

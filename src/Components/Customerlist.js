@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-import { AgGridReact, AgGridColumn} from 'ag-grid-react';
+import { AgGridReact} from 'ag-grid-react';
 import { Snackbar } from '@mui/material';
 
 
@@ -22,7 +22,7 @@ export default function Customerlist() {
 
     const [gridApi, setGridApi] = useState();
     const [gridColumnApi, setGridColumnApi] = useState();
-    const gridRef = useRef();
+   
 
     const [open, setOpen] = React.useState(false);
     const[msg, setMsg] = useState('');
